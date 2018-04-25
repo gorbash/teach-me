@@ -8,20 +8,43 @@ import org.springframework.web.bind.annotation.RestController;
 import teachme.entities.Concept;
 import teachme.repository.ConceptRepository;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class SumOfConceptsRestController {
 
+    private static final Logger log = LoggerFactory.getLogger(SumOfConceptsRestController.class);
+
     @Autowired
     private ConceptRepository repo;
 
-    @Value("${teach-me.testingProp}")
-    private String prop;
+    @Value("${teach-me.sessionSize}")
+    private int sessionSize;
 
 
-    @RequestMapping(path="/session")
+    @RequestMapping(path = "/session")
     public List<Concept> session() {
-        return repo.findAllForSession();
+        List<Concept> all = repo.findAllForSession();
+        List<Concept> mid = new ArrayList<>();
+        List<Concept> ret = new ArrayList<>();
+        Iterator<Concept> iterator = all.iterator();
+        while (mid.size() < 2 * sessionSize && iterator.hasNext()) {
+            mid.add(iterator.next());
+        }
+        log.info("--------------Building session---------------");
+        while (ret.size() < sessionSize && !mid.isEmpty()) {
+            Concept concept = mid.remove((int) (Math.random() * mid.size()));
+            concept.setHits(concept.getHits() + 1);
+            repo.save(concept);
+            ret.add(concept);
+            log.info(concept.toString());
+        }
+        log.info("-----------------Session end-----------------");
+        return ret;
     }
 }

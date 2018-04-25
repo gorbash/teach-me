@@ -61,6 +61,7 @@ public class Concept {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", definition='" + definition + '\'' +
+                ", hits=" + hits +
                 '}';
     }
 }

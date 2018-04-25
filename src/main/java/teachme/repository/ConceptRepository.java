@@ -13,8 +13,7 @@ public interface ConceptRepository extends CrudRepository<Concept, Long> {
 
     List<Concept> findByName(@Param("name") String name);
 
-
-    @Query("select c from Concept c order by c.hits")
+    @Query("select c from Concept c order by c.hits asc")
     List<Concept> findAllForSession();
 
 }
