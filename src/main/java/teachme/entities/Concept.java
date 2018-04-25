@@ -15,13 +15,24 @@ public class Concept {
 
     private String definition;
 
+    private Long hits;
+
     public Concept(String name, String definition) {
         this.name = name;
         this.definition = definition;
+        this.hits = 0l;
     }
 
     public Concept() {
 
+    }
+
+    public Long getHits() {
+        return hits;
+    }
+
+    public void setHits(Long hits) {
+        this.hits = hits;
     }
 
     public long getId() {
