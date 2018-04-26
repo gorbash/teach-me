@@ -1,12 +1,15 @@
 package teachme.entities;
 
 import org.hibernate.annotations.Type;
+import teachme.entities.listeners.ConceptEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@EntityListeners({ConceptEntityListener.class})
 public class Concept {
 
     @Id
@@ -19,7 +22,7 @@ public class Concept {
     @Type(type="text")
     private String definition;
 
-    private Long hits;
+    private long hits;
 
     public Concept(String name, String definition) {
         this.name = name;
@@ -31,11 +34,11 @@ public class Concept {
 
     }
 
-    public Long getHits() {
+    public long getHits() {
         return hits;
     }
 
-    public void setHits(Long hits) {
+    public void setHits(long hits) {
         this.hits = hits;
     }
 

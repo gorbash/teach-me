@@ -7,6 +7,7 @@ $(document).ready(reloadData);
 
 function reloadData()  {
     console.log("Reloading data")
+    displayLoading();
     $.ajax({
       url: "/session"
     }).then(function(data) {
@@ -19,10 +20,12 @@ function reloadData()  {
 }
 
 
-
-
 function disableButton() {
     document.getElementById('button1').disabled=true;
+}
+
+function displayLoading() {
+    document.getElementById('progress').textContent = "Loading...";
 }
 
 function displayProgress() {

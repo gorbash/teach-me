@@ -14,9 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
-public class SumOfConceptsRestController {
+public class SessionRestController {
 
-    private static final Logger log = LoggerFactory.getLogger(SumOfConceptsRestController.class);
+    private static final Logger log = LoggerFactory.getLogger(SessionRestController.class);
 
     @Autowired
     private ConceptRepository repo;
@@ -26,7 +26,8 @@ public class SumOfConceptsRestController {
 
 
     @RequestMapping(path = "/session")
-    public List<Concept> session() {
+    public List<Concept> session() throws InterruptedException {
+        Thread.sleep(1000);
         List<Concept> all = repo.findAllForSession();
         List<Concept> mid = new ArrayList<>();
         List<Concept> ret = new ArrayList<>();

@@ -16,4 +16,5 @@ public interface ConceptRepository extends CrudRepository<Concept, Long> {
     @Query("select c from Concept c order by c.hits asc")
     List<Concept> findAllForSession();
 
+
 }

@@ -1,6 +1,6 @@
 teach-me:
-  sessionSize: 10
-
+  sessionSize: 3
+  numberOfGeneratedRecords: 7
 
 server:
   address: 0.0.0.0
