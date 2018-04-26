@@ -1,6 +1,16 @@
 teach-me:
   sessionSize: 3
-  numberOfGeneratedRecords: 7
+  numberOfGeneratedRecords: 0
 
 server:
   address: 0.0.0.0
+
+spring:
+  datasource:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:file:db/teach-me
+  jpa:
+    hibernate:
+      hbm2ddl:
+        auto: validate
+      ddl-auto: none
