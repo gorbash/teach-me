@@ -1,17 +1,24 @@
 var obtainedData = [];
-
-$(document).ready(function() {
-    $.ajax({
-        url: "/session"
-    }).then(function(data) {
-	   document.getElementById('button1').disabled=false;
-	   obtainedData = data;
-	   clicked();
-    });
-});
-
 var index = 0;
 var first = true;
+
+$(document).ready(reloadData);
+
+
+function reloadData()  {
+    console.log("Reloading data")
+    $.ajax({
+      url: "/session"
+    }).then(function(data) {
+        index = 0;
+        first = true;
+        document.getElementById('button1').disabled=false;
+        obtainedData = data;
+        clicked();
+    });
+}
+
+
 
 
 function disableButton() {
@@ -21,6 +28,7 @@ function disableButton() {
 function displayProgress() {
     document.getElementById('progress').textContent = (index+1) + "/" + obtainedData.length;
 }
+
 
 function clicked() {
 	console.log('Index ' + index + ' first ' + first)

@@ -47,8 +47,8 @@ public class Application {
     }
 
     private Concept generateConcept() {
-        int qLength = (int) (Math.random()*200);
-        int aLength = (int) (Math.random()*1000);
+        int qLength = (int) (Math.random() * 200);
+        int aLength = (int) (Math.random() * 1000);
         return new Concept(genString(qLength), genString(aLength));
     }
 
@@ -56,15 +56,20 @@ public class Application {
         StringBuffer buffer = new StringBuffer("");
 
         while (buffer.length() < length) {
-            int wordLength = (int) (Math.random()*12);
-            for (int i = 0; i < wordLength; i++) {
-                buffer.append((char) (Math.random() * 26 + 'a'));
+            int sentenceLength = (int) (Math.random() * 30) + 1;
+            for (int k = 0; k < sentenceLength; k++) {
+                int wordLength = (int) (Math.random() * 12) + 1;
+                for (int i = 0; i < wordLength; i++) {
+                    buffer.append((char) (Math.random() * 26 + 'a'));
+                }
+                if (k != sentenceLength - 1)
+                    buffer.append(' ');
             }
-            buffer.append(' ');
+            buffer.append('.');
+            buffer.append('\n');
         }
         String ret = buffer.toString();
         ret = ret.substring(0, length);
-
         return ret;
     }
 }
