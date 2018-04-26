@@ -2,7 +2,7 @@ var obtainedData = [];
 
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8080/session"
+        url: "/session"
     }).then(function(data) {
 	   document.getElementById('button1').disabled=false;
 	   obtainedData = data;
@@ -18,8 +18,13 @@ function disableButton() {
     document.getElementById('button1').disabled=true;
 }
 
+function displayProgress() {
+    document.getElementById('progress').textContent = (index+1) + "/" + obtainedData.length;
+}
+
 function clicked() {
 	console.log('Index ' + index + ' first ' + first)
+	displayProgress();
 	if (index < obtainedData.length) {
 		var concept = obtainedData[index];
 		if (first) {
