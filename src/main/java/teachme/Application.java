@@ -32,7 +32,11 @@ public class Application {
             repository.save(new Concept("YAGNI", "You Ain't Gonna Need It"));
             repository.save(new Concept("DRY", "Don't Repeat Yourself"));
 
-            // fetch all customers
+            for (int i = 0; i < 1000; i++) {
+                repository.save(generateConcept());
+            }
+
+            // fetch all concepts
             log.info("Concepts found with findAll():");
             log.info("-------------------------------");
             for (Concept concept : repository.findAll()) {
@@ -40,5 +44,27 @@ public class Application {
             }
             log.info("");
         };
+    }
+
+    private Concept generateConcept() {
+        int qLength = (int) (Math.random()*200);
+        int aLength = (int) (Math.random()*1000);
+        return new Concept(genString(qLength), genString(aLength));
+    }
+
+    private String genString(int length) {
+        StringBuffer buffer = new StringBuffer("");
+
+        while (buffer.length() < length) {
+            int wordLength = (int) (Math.random()*12);
+            for (int i = 0; i < wordLength; i++) {
+                buffer.append((char) (Math.random() * 26 + 'a'));
+            }
+            buffer.append(' ');
+        }
+        String ret = buffer.toString();
+        ret = ret.substring(0, length);
+
+        return ret;
     }
 }

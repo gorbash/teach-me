@@ -1,5 +1,7 @@
 package teachme.entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,8 +13,10 @@ public class Concept {
     @GeneratedValue
     private long id;
 
+    @Type(type="text")
     private String name;
 
+    @Type(type="text")
     private String definition;
 
     private Long hits;
