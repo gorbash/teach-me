@@ -1,25 +1,22 @@
 package teachme.entities;
 
 import org.hibernate.annotations.Type;
-import teachme.entities.listeners.ConceptEntityListener;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@EntityListeners({ConceptEntityListener.class})
 public class Concept {
 
     @Id
     @GeneratedValue
     private long id;
 
-    @Type(type="text")
+    @Type(type = "text")
     private String name;
 
-    @Type(type="text")
+    @Type(type = "text")
     private String definition;
 
     private long hits;
@@ -67,7 +64,6 @@ public class Concept {
         return "Concept{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", definition='" + definition + '\'' +
                 ", hits=" + hits +
                 '}';
     }

@@ -1,16 +1,39 @@
 teach-me:
-  sessionSize: 3
+  sessionSize: 10
   numberOfGeneratedRecords: 0
 
 server:
   address: 0.0.0.0
 
 spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
   datasource:
-    driverClassName: org.hsqldb.jdbc.JDBCDriver
-    url: jdbc:hsqldb:file:db/teach-me
+    url: "jdbc:postgresql://localhost/teachme"
+    username: "teach-me"
+    password: "krowa1234"
+    platform: POSTGRESQL
   jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
     hibernate:
-      hbm2ddl:
-        auto: validate
-      ddl-auto: none
+      ddl-auto: update
+
+---
+spring:
+  profiles: hsqldb
+  datasource:
+    driverClassName: "org.hsqldb.jdbc.JDBCDriver"
+    url: "jdbc:hsqldb:file:db/teach-me"
+    user: "SA"
+    password: ""
+  jpa:
+    database: HSQL
+    hibernate:
+      ddl-auto: update

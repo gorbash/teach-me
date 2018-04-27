@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import teachme.entities.Concept;
 import teachme.repository.ConceptRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,8 +27,8 @@ public class SessionRestController {
 
 
     @RequestMapping(path = "/session")
-    public List<Concept> session() throws InterruptedException {
-        Thread.sleep(1000);
+    public List<Concept> session(HttpServletRequest request) {
+        long start = System.currentTimeMillis();
         List<Concept> all = repo.findAllForSession();
         List<Concept> mid = new ArrayList<>();
         List<Concept> ret = new ArrayList<>();
@@ -35,15 +36,14 @@ public class SessionRestController {
         while (mid.size() < 2 * sessionSize && iterator.hasNext()) {
             mid.add(iterator.next());
         }
-        log.info("--------------Building session---------------");
         while (ret.size() < sessionSize && !mid.isEmpty()) {
             Concept concept = mid.remove((int) (Math.random() * mid.size()));
             concept.setHits(concept.getHits() + 1);
             repo.save(concept);
             ret.add(concept);
-            log.info(concept.toString());
         }
-        log.info("-----------------Session end-----------------");
+        long end = System.currentTimeMillis();
+        log.info(String.format("Request from %s - building session took %dms", request.getRemoteAddr(), end - start));
         return ret;
     }
 }
