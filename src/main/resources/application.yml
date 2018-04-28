@@ -21,9 +21,9 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:postgresql://localhost/teachme
-    username: teach-me
-    password: ${TEACH_ME_PG_PASS}
+    url: ${SPRING_DATASOURCE_URL}  #jdbc:postgresql://localhost/teachme
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     platform: POSTGRESQL
   jpa:
     properties:
