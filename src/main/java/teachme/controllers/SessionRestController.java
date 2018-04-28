@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import teachme.entities.Concept;
 import teachme.repository.ConceptRepository;
@@ -26,7 +27,7 @@ public class SessionRestController {
     private int sessionSize;
 
 
-    @RequestMapping(path = "/session")
+    @RequestMapping(path = "/${teach-me.sessionUrl}", method = RequestMethod.GET)
     public List<Concept> session(HttpServletRequest request) {
         long start = System.currentTimeMillis();
         List<Concept> all = repo.findAllForSession();

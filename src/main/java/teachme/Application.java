@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import teachme.entities.Concept;
 import teachme.repository.ConceptRepository;
 
+
 @SpringBootApplication
 public class Application {
 
@@ -21,6 +22,7 @@ public class Application {
 
     @Value("${teach-me.numberOfGeneratedRecords}")
     private int numberOfGeneratedRecords;
+
 
     @Bean
     public CommandLineRunner loadData(ConceptRepository repository) {

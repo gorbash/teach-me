@@ -5,6 +5,8 @@ var first = true;
 $(document).ready(reloadData);
 
 
+
+
 function reloadData()  {
     console.log("Reloading data")
     displayLoading();

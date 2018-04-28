@@ -1,9 +1,17 @@
 teach-me:
   sessionSize: 10
+  sessionUrl: session
   numberOfGeneratedRecords: 0
 
 server:
   address: 0.0.0.0
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: ${TEACH_ME_CERT_PASS}
+    keyStoreType: PKCS12
+    keyAlias: tomcat
+
 
 spring:
   profiles:
@@ -13,9 +21,9 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: "jdbc:postgresql://localhost/teachme"
-    username: "teach-me"
-    password: "krowa1234"
+    url: jdbc:postgresql://localhost/teachme
+    username: teach-me
+    password: ${TEACH_ME_PG_PASS}
     platform: POSTGRESQL
   jpa:
     properties:
