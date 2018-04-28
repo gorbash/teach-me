@@ -5,12 +5,12 @@ teach-me:
 
 server:
   address: 0.0.0.0
-  port: 8443
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: ${TEACH_ME_CERT_PASS}
-    keyStoreType: PKCS12
-    keyAlias: tomcat
+#  port: 8443
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: ${TEACH_ME_CERT_PASS}
+#    keyStoreType: PKCS12
+#    keyAlias: tomcat
 
 
 spring:
