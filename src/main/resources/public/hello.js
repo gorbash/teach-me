@@ -36,7 +36,7 @@ function displayProgress() {
 
 
 function replaceEOL(str) {
-    var ret = str.replace("\n", "<br>");
+    var ret = str.replace(/\n/g, "<br>");
     console.log("Returning " + ret)
     return ret;
 }
