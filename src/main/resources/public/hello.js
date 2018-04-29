@@ -35,6 +35,12 @@ function displayProgress() {
 }
 
 
+function replaceEOL(str) {
+    var ret = str.replace("\n", "<br>");
+    console.log("Returning " + ret)
+    return ret;
+}
+
 function clicked() {
 	console.log('Index ' + index + ' first ' + first)
 	displayProgress();
@@ -42,13 +48,13 @@ function clicked() {
 		var concept = obtainedData[index];
 		if (first) {
 			document.getElementById('button1').textContent='Show answer';
-			document.getElementById('question').textContent=concept.name;
+			document.getElementById('question').textContent=replaceEOL(concept.name);
 			document.getElementById('answer').textContent='';			
 		}
 		else {
 			document.getElementById('button1').textContent='Next question';
-			document.getElementById('question').textContent=concept.name;
-			document.getElementById('answer').textContent=concept.definition;
+			document.getElementById('question').textContent=replaceEOL(concept.name);
+			document.getElementById('answer').innerHTML = replaceEOL(concept.definition);
 			index++;
 			if (index == obtainedData.length) {
                 disableButton();

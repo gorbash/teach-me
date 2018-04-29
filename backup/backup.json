@@ -1,0 +1,88 @@
+{
+  "_embedded" : {
+    "concepts" : [ {
+      "name" : "D in SOLID",
+      "definition" : "Dependency inversion principle. One should depend upon abstractions, not concretions.",
+      "hits" : 20,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/5"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/5"
+        }
+      }
+    }, {
+      "name" : "I in SOLID",
+      "definition" : "Interface segregation principle. Many client-specific interfaces are better than one general-purpose interface.",
+      "hits" : 20,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/4"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/4"
+        }
+      }
+    }, {
+      "name" : "S in SOLID",
+      "definition" : "Single responsibility principle.  A class should have only a single responsibility (i.e. changes to only one part of the software's specification should be able to affect the specification of the class).",
+      "hits" : 20,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/1"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/1"
+        }
+      }
+    }, {
+      "name" : "L in SOLID",
+      "definition" : "Liskov substitution principle. Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.",
+      "hits" : 20,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/3"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/3"
+        }
+      }
+    }, {
+      "name" : "O in SOLID",
+      "definition" : "Open/closed principle. Software entities … should be open for extension, but closed for modification.",
+      "hits" : 10,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/6"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/6"
+        }
+      }
+    }, {
+      "name" : "Elements of Thread Modeling",
+      "definition" : "Identify Security Objectives, \nApplication Overview, \nDecompose Application, \nIdentify Threats, \nIdentify Vulnerabilities",
+      "hits" : 8,
+      "_links" : {
+        "self" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/7"
+        },
+        "concept" : {
+          "href" : "http://teach-me-now.herokuapp.com/concepts/7"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://teach-me-now.herokuapp.com/concepts"
+    },
+    "profile" : {
+      "href" : "http://teach-me-now.herokuapp.com/profile/concepts"
+    },
+    "search" : {
+      "href" : "http://teach-me-now.herokuapp.com/concepts/search"
+    }
+  }
+}
