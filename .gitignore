@@ -29,4 +29,5 @@ hs_err_pid*
 build/
 out/
 db/
+backup/*json
 keystore.p12
