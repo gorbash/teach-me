@@ -48,12 +48,12 @@ function clicked() {
 		var concept = obtainedData[index];
 		if (first) {
 			document.getElementById('button1').textContent='Show answer';
-			document.getElementById('question').textContent=replaceEOL(concept.name);
-			document.getElementById('answer').textContent='';			
+			document.getElementById('question').innerHTML=replaceEOL(concept.name);
+			document.getElementById('answer').innerHTML='';
 		}
 		else {
 			document.getElementById('button1').textContent='Next question';
-			document.getElementById('question').textContent=replaceEOL(concept.name);
+			document.getElementById('question').innerHTML=replaceEOL(concept.name);
 			document.getElementById('answer').innerHTML = replaceEOL(concept.definition);
 			index++;
 			if (index == obtainedData.length) {
