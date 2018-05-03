@@ -1,51 +1,88 @@
+
+function getNotificationArea() {
+    return  document.getElementById('notificationArea');
+}
+
+function getConceptNameArea() {
+    return  document.getElementById('conceptName');
+}
+
+function getConceptDefArea() {
+    return  document.getElementById('conceptDefinition');
+}
+
+function getSaveButton() {
+    return  document.getElementById('saveButton');
+}
+
 function saveConcept() {
     var concept = {}
-    concept.name = document.getElementById('conceptName').value
-    concept.definition = document.getElementById('conceptDefinition').value
+    concept.name = getConceptNameArea().value
+    concept.definition = getConceptDefArea().value
     console.log(JSON.stringify(concept))
+    var conceptHref = getConceptNameArea().existingConceptHref
 
-    $.ajax({
-        type: "POST",
-        url: "/concepts",
-        data: JSON.stringify(concept),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: conceptAdded
-        }).fail(function (xhr, ajaxOptions, thrownError) {
-            notifyCreateFailed(xhr.status)
-        });
+    if (conceptHref == null) {
+        console.log("Creating")
+        $.ajax({
+            type: "POST",
+            url: "/concepts",
+            data: JSON.stringify(concept),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: conceptAdded
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                notifyCreateFailed(xhr.status)
+            });
+    } else {
+        console.log("Updating")
+        $.ajax({
+            type: "PUT",
+            url: conceptHref,
+            data: JSON.stringify(concept),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: conceptAdded
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                notifyCreateFailed(xhr.status)
+            });
+    }
 }
 
 function conceptAdded() {
     console.log("concept added successfully")
-    document.getElementById('conceptName').value=""
-    document.getElementById('conceptDefinition').value=""
+    getConceptNameArea().value=""
+    getConceptDefArea().value=""
+    getConceptNameArea().existingConceptHref = null
+    getSaveButton().textContent = "Create"
     reloadTable()
-    document.getElementById('conceptName').focus()
+    getConceptNameArea().focus()
     notifyCreateSuccessful()
 }
 
+
+
 function notifyCreateSuccessful() {
-    document.getElementById('notificationArea').className = ""
-    document.getElementById('notificationArea').classList.add("alert")
-    document.getElementById('notificationArea').classList.add("alert-success")
-    document.getElementById('notificationArea').textContent="Concept created successfully"
+    getNotificationArea().className = ""
+    getNotificationArea().classList.add("alert")
+    getNotificationArea().classList.add("alert-success")
+    getNotificationArea().textContent="Concept created successfully"
 }
 
 
 function notifyCreateFailed(errorMsg) {
-    document.getElementById('notificationArea').className = ""
-    document.getElementById('notificationArea').classList.add("alert")
-    document.getElementById('notificationArea').classList.add("alert-danger")
-    document.getElementById('notificationArea').textContent="Concept not created: " + errorMsg
+    getNotificationArea().className = ""
+    getNotificationArea().classList.add("alert")
+    getNotificationArea().classList.add("alert-danger")
+    getNotificationArea().textContent="Concept not created: " + errorMsg
 }
 
 
 function notifyDeleteSuccessful() {
-    document.getElementById('notificationArea').className = ""
-    document.getElementById('notificationArea').classList.add("alert")
-    document.getElementById('notificationArea').classList.add("alert-warning")
-    document.getElementById('notificationArea').textContent="Concept deleted successfully"
+    getNotificationArea().className = ""
+    getNotificationArea().classList.add("alert")
+    getNotificationArea().classList.add("alert-warning")
+    getNotificationArea().textContent="Concept deleted successfully"
 }
 
 var tableData = {}
@@ -137,6 +174,16 @@ function deleteConcept(conceptHref){
 
 function editConcept(conceptHref){
     console.log("Edit " + conceptHref)
+    $.ajax({
+            url: conceptHref
+        }).then(function(data) {
+            getConceptNameArea().value = data.name;
+            getConceptDefArea().value = data.definition
+            getConceptNameArea().focus()
+            getConceptNameArea().existingConceptHref = conceptHref
+            getSaveButton().textContent = "Update"
+
+        });
 }
 
 $(document).ready(reloadTable);

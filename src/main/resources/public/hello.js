@@ -18,6 +18,7 @@ function reloadData()  {
         document.getElementById('button1').disabled=false;
         obtainedData = data;
         clicked();
+        document.getElementById('button1').focus()
     });
 }
 

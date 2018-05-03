@@ -33,17 +33,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <p class="navbar-brand">Teach me!</p>
+            <a class="navbar-text" href="/" >Learn</a>
         </div>
 
     </div>
 </nav>
-
 <div class="container">
     <div class="starter-template">
         <div>
@@ -53,7 +48,7 @@
             <textarea class="lead" id="conceptDefinition" class="form-control"  style="height:20vh;width:90vh"></textarea>
         </div>
         <div>
-            <button class="btn btn-default" onclick="saveConcept()">Submit</button>
+            <button id="saveButton" class="btn btn-default" onclick="saveConcept()">Create</button>
         </div>
         <div>
             <p id="notificationArea"></p>
