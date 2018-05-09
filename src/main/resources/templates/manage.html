@@ -15,7 +15,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="dist/starter-template.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -34,7 +34,8 @@
     <div class="container">
         <div class="navbar-header">
             <p class="navbar-brand">Teach me!</p>
-            <a class="navbar-text" href="/" >Learn</a>
+            <a class="navbar-text" href="/learn" >Learn</a>
+            
         </div>
 
     </div>
@@ -42,10 +43,10 @@
 <div class="container">
     <div class="starter-template">
         <div>
-            <textarea class="lead" id="conceptName" class="form-control"  style="height:20vh;width:90vh"></textarea>
+            <textarea class="lead form-control" id="conceptName"  style="height:20vh;width:90vh" placeholder="Question"></textarea>
         </div>
         <div>
-            <textarea class="lead" id="conceptDefinition" class="form-control"  style="height:20vh;width:90vh"></textarea>
+            <textarea class="lead form-control" id="conceptDefinition"  style="height:20vh;width:90vh" placeholder="Answer"></textarea>
         </div>
         <div>
             <button id="saveButton" class="btn btn-default" onclick="saveConcept()">Create</button>

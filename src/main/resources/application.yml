@@ -12,6 +12,9 @@ server:
 #    keyStoreType: PKCS12
 #    keyAlias: tomcat
 
+#logging:
+#  level:
+#    ROOT: DEBUG
 
 spring:
   profiles:
