@@ -45,7 +45,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.hsqldb:hsqldb")
     compile("org.postgresql:postgresql")
-   /* compile "org.flywaydb:flyway-core:5.0.7"*/
+    compile "org.flywaydb:flyway-core:5.0.7"
     testCompile("junit:junit")
 
 }
