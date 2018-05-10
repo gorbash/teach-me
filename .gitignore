@@ -28,6 +28,5 @@ hs_err_pid*
 .gradle/
 build/
 out/
-db/
 backup/*json
 keystore.p12

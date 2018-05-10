@@ -1,7 +1,6 @@
 teach-me:
   sessionSize: 10
   sessionUrl: session
-  numberOfGeneratedRecords: 0
 
 server:
   address: 0.0.0.0
@@ -34,7 +33,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
 ---
 spring:
@@ -47,4 +46,4 @@ spring:
   jpa:
     database: HSQL
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
