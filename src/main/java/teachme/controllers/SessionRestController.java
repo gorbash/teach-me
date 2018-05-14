@@ -44,7 +44,7 @@ public class SessionRestController {
             ret.add(concept);
         }
         long end = System.currentTimeMillis();
-        log.info(String.format("Request from %s - building session took %dms", request.getRemoteAddr(), end - start));
+        log.info(String.format("Request from %s user %s - building session took %dms", request.getRemoteAddr(), request.getUserPrincipal().getName(), end - start));
         return ret;
     }
 }
