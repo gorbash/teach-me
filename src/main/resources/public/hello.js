@@ -16,6 +16,7 @@ function reloadData()  {
         index = 0;
         first = true;
         document.getElementById('button1').disabled=false;
+        document.getElementById('moreButton').disabled=false;
         obtainedData = data;
         clicked();
         document.getElementById('button1').focus()
@@ -40,6 +41,12 @@ function replaceEOL(str) {
     var ret = str.replace(/\n/g, "<br>");
     console.log("Returning " + ret)
     return ret;
+}
+
+function displayMore() {
+    var name = obtainedData[!first?index:index-1].name;
+    var url = "https://google.com/search?q=" + name;
+    window.open(url)
 }
 
 function clicked() {
