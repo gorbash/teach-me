@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head>
-    <title>Spring Security Example </title>
+    <title>Teach-me login</title>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+
+    <!--Pulling Awesome Font -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <p class="navbar-brand">Teach me!</p>
+        </div>
+
+    </div>
+</nav>
+
+<div style="height:15vh;">
+</div>
+<div class="container">
+    <div class="starter-template">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-3">
+                <div class="form-login">
+                    <h4>Welcome back.</h4>
+                    <form th:action="@{/login}" method="post">
+                        <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username"
+                               name="username"/>
+                        </br>
+                        <input type="password" id="userPassword" class="form-control input-sm chat-input"
+                               placeholder="password" name="password"/>
+                        </br>
+                        <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-primary btn-md" value="Sign In"/>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div th:if="${param.error}">
-    Invalid username and password.
+    <div class="alert alert-danger text-center" role="alert">
+        Invalid username and password
+    </div>
 </div>
 <div th:if="${param.logout}">
-    You have been logged out.
+    <div class="alert alert-primary text-center" role="alert">
+        You have been logout
+    </div>
 </div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
 </body>
 </html>
