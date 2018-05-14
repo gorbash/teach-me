@@ -11,6 +11,7 @@ function reloadData()  {
     console.log("Reloading data")
     displayLoading();
     $.ajax({
+      type: "POST",
       url: "/session"
     }).then(function(data) {
         index = 0;

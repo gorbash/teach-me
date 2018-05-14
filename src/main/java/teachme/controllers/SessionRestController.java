@@ -27,7 +27,7 @@ public class SessionRestController {
     private int sessionSize;
 
 
-    @RequestMapping(path = "/${teach-me.sessionUrl}", method = RequestMethod.GET)
+    @RequestMapping(path = "/${teach-me.sessionUrl}", method = RequestMethod.POST)
     public List<Concept> session(HttpServletRequest request) {
         long start = System.currentTimeMillis();
         List<Concept> all = repo.findAllForSession();
