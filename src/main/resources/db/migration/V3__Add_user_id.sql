@@ -1,0 +1,1 @@
+ALTER TABLE public.concept add column user_id bigint;

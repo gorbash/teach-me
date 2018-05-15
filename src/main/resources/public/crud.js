@@ -26,7 +26,7 @@ function saveConcept() {
         console.log("Creating")
         $.ajax({
             type: "POST",
-            url: "/concepts",
+            url: "/concepts2",
             data: JSON.stringify(concept),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -91,7 +91,7 @@ var cellsInRow = 3
 function reloadTable() {
     console.log("Reloading table")
         $.ajax({
-          url: "/concepts"
+          url: "/concepts2"
         }).then(function(data) {
             tableData = data;
             drawTable();
@@ -119,13 +119,13 @@ function drawTable() {
 
     tbl.appendChild(tBody)
 
-    var concepts = tableData._embedded.concepts;
+    var concepts = tableData;
     var rows = concepts.length;
     console.log("Creating " + rows + " rows")
     // creating rows
     for (var r = 0; r < rows; r++) {
         var concept = concepts[r];
-        link = concept._links.self.href;
+        link = "/concepts2/" + concept.id;
         var row = document.createElement("tr");
 
         // create cells in row

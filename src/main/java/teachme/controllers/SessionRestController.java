@@ -4,11 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import teachme.entities.Concept;
+import teachme.entities.ConceptUser;
 import teachme.repository.ConceptRepository;
+import teachme.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -23,14 +27,22 @@ public class SessionRestController {
     @Autowired
     private ConceptRepository repo;
 
+    @Autowired
+    private UserRepository userRepo;
+
     @Value("${teach-me.sessionSize}")
     private int sessionSize;
 
 
     @RequestMapping(path = "/${teach-me.sessionUrl}", method = RequestMethod.POST)
-    public List<Concept> session(HttpServletRequest request) {
+    public ResponseEntity session(HttpServletRequest request) {
+        ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
+        log.info("session: got user " + user);
+        if (user == null) {
+            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+        }
         long start = System.currentTimeMillis();
-        List<Concept> all = repo.findAllForSession();
+        List<Concept> all = repo.findAllForSessionForUserName(user.getId());
         List<Concept> mid = new ArrayList<>();
         List<Concept> ret = new ArrayList<>();
         Iterator<Concept> iterator = all.iterator();
@@ -45,6 +57,6 @@ public class SessionRestController {
         }
         long end = System.currentTimeMillis();
         log.info(String.format("Request from %s user %s - building session took %dms", request.getRemoteAddr(), request.getUserPrincipal().getName(), end - start));
-        return ret;
+        return new ResponseEntity(ret, HttpStatus.OK);
     }
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Concept {
@@ -20,6 +21,10 @@ public class Concept {
     private String definition;
 
     private long hits;
+
+
+    @ManyToOne()
+    private ConceptUser user;
 
     public Concept(String name, String definition) {
         this.name = name;
@@ -57,6 +62,10 @@ public class Concept {
 
     public void setDefinition(String definition) {
         this.definition = definition;
+    }
+
+    public void setUser(ConceptUser user) {
+        this.user = user;
     }
 
     @Override
