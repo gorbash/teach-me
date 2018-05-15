@@ -17,9 +17,6 @@ CREATE TABLE public.concept (
     name text
 );
 
-
-ALTER TABLE public.concept OWNER TO "teach-me";
-
 --
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: teach-me
 --
@@ -31,8 +28,6 @@ CREATE SEQUENCE public.hibernate_sequence
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.hibernate_sequence OWNER TO "teach-me";
 
 --
 -- Name: concept concept_pkey; Type: CONSTRAINT; Schema: public; Owner: teach-me

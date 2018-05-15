@@ -6,9 +6,5 @@ CREATE TABLE public.concept_user (
 );
 
 
-ALTER TABLE public.concept_user OWNER TO "teach-me";
-
-
-
 ALTER TABLE ONLY public.concept_user
     ADD CONSTRAINT concept_user_pkey PRIMARY KEY (id);
