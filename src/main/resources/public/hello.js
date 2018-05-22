@@ -5,14 +5,12 @@ var first = true;
 $(document).ready(reloadData);
 
 
-
-
 function reloadData()  {
     console.log("Reloading data")
     displayLoading();
     $.ajax({
       type: "POST",
-      url: "/session"
+      url: sessionUrl
     }).then(function(data) {
         index = 0;
         first = true;

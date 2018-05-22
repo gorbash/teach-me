@@ -1,6 +1,7 @@
 package teachme.entities;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ public class Concept {
     private long id;
 
     @Type(type = "text")
+    @Length(min = 1)
     private String name;
 
     @Type(type = "text")

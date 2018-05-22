@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teachme.entities.Concept;
 import teachme.entities.ConceptUser;
-import teachme.repository.ConceptRepository;
-import teachme.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

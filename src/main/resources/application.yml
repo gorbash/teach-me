@@ -1,6 +1,7 @@
 teach-me:
   sessionSize: 10
   sessionUrl: session
+  sessionAllUrl: sessionAll
   conceptsUrl: concepts2
 
 server:

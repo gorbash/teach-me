@@ -1,4 +1,4 @@
-package teachme.repository;
+package teachme.controllers;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -9,7 +9,7 @@ import teachme.entities.Concept;
 import java.util.List;
 
 
-public interface ConceptRepository extends CrudRepository<Concept, Long> {
+interface ConceptRepository extends CrudRepository<Concept, Long> {
 
     List<Concept> findByName(@Param("name") String name);
 
