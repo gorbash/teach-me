@@ -70,8 +70,6 @@ public class SessionRestController {
         List<Concept> ret = new ArrayList<>();
         while (!all.isEmpty()) {
             Concept concept = all.remove((int) (Math.random() * all.size()));
-            concept.setHits(concept.getHits() + 1);
-            repo.save(concept);
             ret.add(concept);
         }
         long end = System.currentTimeMillis();
