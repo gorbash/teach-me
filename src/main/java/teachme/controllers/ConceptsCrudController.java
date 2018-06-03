@@ -28,7 +28,7 @@ public class ConceptsCrudController {
         ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
         log.info("concepts: got user " + user);
         if (user == null) {
-            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+            return noUserResponse();
         }
         List<Concept> ret = conceptRepo.findAllOrderByNameForUserName(user.getId());
         return new ResponseEntity(ret, HttpStatus.OK);
@@ -39,7 +39,7 @@ public class ConceptsCrudController {
         ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
         log.info("concept: got user " + user);
         if (user == null) {
-            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+            return noUserResponse();
         }
         Concept byId = conceptRepo.findByIDAndUserName(id, user.getId());
         if (byId == null) {
@@ -48,15 +48,22 @@ public class ConceptsCrudController {
         return new ResponseEntity(byId, HttpStatus.OK);
     }
 
+    private ResponseEntity noUserResponse() {
+        return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+    }
+
     @RequestMapping(value = "/${teach-me.conceptsUrl}", method = RequestMethod.POST)
     public ResponseEntity create(HttpServletRequest request, @RequestBody Concept concept) {
         log.info("Creating " + concept);
         ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
         log.info("create: got user " + user);
         if (user == null) {
-            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+            return noUserResponse();
         }
         concept.setUser(user);
+        Long minHits = conceptRepo.findMinHits(user.getId());
+        log.info("minHits " + minHits);
+        concept.setHits(minHits == null ? 0 : minHits);
         ResponseEntity ret = null;
         try {
             conceptRepo.save(concept);
@@ -74,7 +81,7 @@ public class ConceptsCrudController {
         ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
         log.info("delete: got user " + user);
         if (user == null) {
-            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+            return noUserResponse();
         }
         Concept byId = conceptRepo.findByIDAndUserName(id, user.getId());
         if (byId == null) {
@@ -92,7 +99,7 @@ public class ConceptsCrudController {
         ConceptUser user = userRepo.findByUserName(request.getUserPrincipal().getName());
         log.info("update: got user " + user);
         if (user == null) {
-            return new ResponseEntity("No user in database", HttpStatus.NOT_FOUND);
+            return noUserResponse();
         }
         Concept byId = conceptRepo.findByIDAndUserName(id, user.getId());
         if (byId == null) {

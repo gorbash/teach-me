@@ -13,9 +13,6 @@ interface ConceptRepository extends CrudRepository<Concept, Long> {
 
     List<Concept> findByName(@Param("name") String name);
 
- /*   @Query("select c from Concept c order by c.hits asc")
-    List<Concept> findAllForSession();*/
-
     @Query("select c from Concept c, ConceptUser cu where c.user = cu and cu.id = :user_id order by c.hits asc")
     List<Concept> findAllForSessionForUserName(@Param("user_id") Long userid);
 
@@ -24,4 +21,7 @@ interface ConceptRepository extends CrudRepository<Concept, Long> {
 
     @Query("select c from Concept c, ConceptUser cu where c.user = cu and cu.id = :user_id and c.id = :id")
     Concept findByIDAndUserName(@Param("id") Long conceptId, @Param("user_id") Long userid);
+
+    @Query("select min(c.hits) from Concept c, ConceptUser cu where c.user = cu and cu.id = :user_id")
+    Long findMinHits(@Param("user_id") Long userid);
 }
